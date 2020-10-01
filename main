@@ -78,6 +78,34 @@ bool isIdentical(const string dict[], int n, string word){
     return false;
 }
 
+bool swapTwoLetters(string s, string word){
+    
+    if (s.length() != word.length())
+        return false;
+    
+    for (int i = 0; i < s.length() - 1; i++){
+        
+        string swapped = "";
+        
+        for (int a = 0; a < s.length(); a++){
+            
+            if (a == i) {
+                swapped += s.at(a + 1);
+                swapped += s.at(a);
+                a++;
+            } else
+                swapped += s.at(a);
+            
+        }
+        
+        if (swapped == word)
+            return true;
+        
+    }
+    
+    return false;
+}
+
 int scoreTypo(const string dict[], int n, string word)
 {
     if (n <= 0)
@@ -87,7 +115,7 @@ int scoreTypo(const string dict[], int n, string word)
         return 0;
         
     for (int i = 0; i < n; i++){
-        if(addLetter(dict[i], word) || removeLetter(dict[i], word) || replaceLetter(dict[i], word))
+        if(addLetter(dict[i], word) || removeLetter(dict[i], word) || replaceLetter(dict[i], word) || swapTwoLetters(dict[i], word))
             return 1;
     }
     
@@ -104,4 +132,5 @@ int main()
     assert(scoreTypo(dict1, 7, "aprila") == 1);
     assert(scoreTypo(dict1, 7, "janary") == 1);
     assert(scoreTypo(dict1, 7, "banuary") == 1);
+    assert(scoreTypo(dict1, 7, "aprli") == 1);
 }
