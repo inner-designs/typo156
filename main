@@ -32,6 +32,11 @@ bool isIdentical(const string dict[], int n, string word){
         if(dict[i] == word)
             return true;
     }
+    
+    for (int i = 0; i < n; i++){
+        if(addLetter(dict[i], word))
+            return 1;
+    }
     return false;
 }
 
