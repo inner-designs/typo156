@@ -3,6 +3,7 @@
 #include <cassert>
 using namespace std;
 
+
 bool addLetter(string s, string word){
     if (s.length() + 1 != word.length())
         return false;
@@ -24,8 +25,26 @@ bool addLetter(string s, string word){
                 return true;
         }
         
+}
+
+bool isIdentical(const string dict[], int n, string word){
+    for (int i = 0; i < n; i++){
+        if(dict[i] == word)
+            return true;
     }
     return false;
+}
+
+int scoreTypo(const string dict[], int n, string word)
+{
+    if (n <= 0)
+        return -1;
+        
+    if (isIdentical(dict, n, word))
+        return 0;
+    
+    return 2;
+    
 }
 
 int main()
