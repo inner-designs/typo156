@@ -1,0 +1,11 @@
+#include <iostream>
+#include <string>
+#include <cassert>
+using namespace std;
+
+int main()
+{
+    string dict1[7] = { "januarty", "february", "march", "april", "may", "june", "july"};
+    
+    assert(scoreTypo(dict1, 7, "april") == 0);
+}
