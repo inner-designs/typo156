@@ -27,6 +27,25 @@ bool addLetter(string s, string word){
         
 }
 
+bool removeLetter(string s, string word){
+    if (s.length() != word.length() + 1)
+        return false;
+
+    for (int i = 0; i < s.length(); i++){
+        
+        string oneRemoved = "";
+        
+        for (int a = 0; a < s.length(); a++){
+            if (a != i)
+                oneRemoved += s.at(a);
+        }
+        if (oneRemoved == word)
+            return true;
+        
+    }
+    return false;
+}
+
 bool isIdentical(const string dict[], int n, string word){
     for (int i = 0; i < n; i++){
         if(dict[i] == word)
@@ -47,6 +66,11 @@ int scoreTypo(const string dict[], int n, string word)
         
     if (isIdentical(dict, n, word))
         return 0;
+        
+    for (int i = 0; i < n; i++){
+        if(addLetter(dict[i], word) || removeLetter(dict[i], word) )
+            return 1;
+    }
     
     return 2;
     
