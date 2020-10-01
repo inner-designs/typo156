@@ -3,9 +3,36 @@
 #include <cassert>
 using namespace std;
 
+bool addLetter(string s, string word){
+    if (s.length() + 1 != word.length())
+        return false;
+    
+    for(int posToAddChar = 0; posToAddChar < s.length() + 1; posToAddChar++){
+            
+        for (char alpha = 'a'; alpha <= 'z'; alpha++){
+            string added = "";
+            
+            for (int i = 0; i < s.length() + 1; i++){
+                if (i == posToAddChar)
+                    added += alpha;
+                
+                if (i != s.length())
+                    added += s.at(i);
+            }
+            
+            if (added == word)
+                return true;
+        }
+        
+    }
+    return false;
+}
+
 int main()
 {
     string dict1[7] = { "januarty", "february", "march", "april", "may", "june", "july"};
     
+    assert(scoreTypo(dict1, -5, "april") == -1);
     assert(scoreTypo(dict1, 7, "april") == 0);
+    assert(scoreTypo(dict1, 7, "aprila") == 1);
 }
